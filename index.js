@@ -70,3 +70,20 @@ document.getElementById('download').addEventListener('click', function () {
     document.getElementById('loader').style.display = 'none';
   });
 });
+
+// 1px単位での微調整機能
+function moveCroppie(x, y) {
+  var transform = Transform.parse(croppieInstance.elements.preview.style.transform);
+  transform.x += x;
+  transform.y += y;
+  var newCss = {};
+  newCss.transform = transform.toString();
+  css(croppieInstance.elements.preview, newCss);
+}
+
+// ボタンイベントリスナー
+document.getElementById('move-left').addEventListener('click', () => moveCroppie(-1, 0));
+document.getElementById('move-right').addEventListener('click', () => moveCroppie(1, 0));
+document.getElementById('move-up').addEventListener('click', () => moveCroppie(0, -1));
+document.getElementById('move-down').addEventListener('click', () => moveCroppie(0, 1));
+
